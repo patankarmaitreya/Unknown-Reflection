@@ -32,6 +32,7 @@ public class InteractionSystem : MonoBehaviour
 
     private bool isRightRotated = false;
     private bool isLeftRotated = false;
+    private bool initalRotation = true;
 
     void Awake()
     {
@@ -47,10 +48,13 @@ public class InteractionSystem : MonoBehaviour
         {
             //Debug.Log("in");
             StartCoroutine(LeverCoolDown());
-            RotatePlatform(rightPlatforms);
+            RotatePlatform(rightPlatforms, rotationFactor);
+            if(!initalRotation)
+                RotatePlatform(leftPlatforms, -rotationFactor);
         }
         isRightRotated = true;
         isLeftRotated = false;
+        initalRotation = false;
     }
 
     void RotateLeftPlatforms()
@@ -59,10 +63,14 @@ public class InteractionSystem : MonoBehaviour
         {
             //Debug.Log("in");
             StartCoroutine(LeverCoolDown());
-            RotatePlatform(leftPlatforms);
+            RotatePlatform(leftPlatforms, rotationFactor);
+            if (!initalRotation)
+                Debug.Log("in");
+                RotatePlatform(rightPlatforms, -rotationFactor);
         }
         isRightRotated = false;
         isLeftRotated = true;
+        initalRotation = false;
     }
 
     IEnumerator LeverCoolDown()
@@ -83,24 +91,25 @@ public class InteractionSystem : MonoBehaviour
         leverPlatform2.enabled = leverPlatform2.enabled == false;
     }
 
-    public void RotatePlatform(List<GameObject> Platforms)
+    public void RotatePlatform(List<GameObject> Platforms, float rotationFactor)
     {
         foreach (GameObject platform in Platforms)
         {
-            StartCoroutine(StartPlatformRotation(platform));
+            StartCoroutine(StartPlatformRotation(platform, rotationFactor));
         }
     }
 
-    IEnumerator StartPlatformRotation(GameObject platform)
+    IEnumerator StartPlatformRotation(GameObject platform, float rotationFactor)
     {
         float oldAngle = platform.transform.rotation.eulerAngles.z;
         if (angleOfRotation != platform.transform.rotation.z)
         {
-            for (float theta = 0f; theta <= angleOfRotation; theta += rotationFactor)
+            for (float theta = 0f; theta <= angleOfRotation; theta += Mathf.Abs(rotationFactor)
+                )
             {
                 if (Mathf.Abs(theta - angleOfRotation) < valueOfRoatation)
                 {
-                    platform.transform.localRotation = Quaternion.Euler(0, 0, angleOfRotation + oldAngle);
+                    platform.transform.localRotation = Quaternion.Euler(0, 0, angleOfRotation * (rotationFactor/ Mathf.Abs(rotationFactor)) + oldAngle);
                     yield break;
                 }
                 platform.transform.Rotate(Vector3.forward, rotationFactor);
