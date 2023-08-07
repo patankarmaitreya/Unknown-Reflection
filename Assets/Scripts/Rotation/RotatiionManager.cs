@@ -29,17 +29,6 @@ public class RotatiionManager : MonoBehaviour
             }
         }
     }
-
-    /*public void RotatePlatformRight()
-    {
-        if (!EventManager.eventInstance.isRightRotated)
-        {
-            foreach (GameObject rightPlatforms in rightSidePlatform)
-            {
-                StartCoroutine(SetRightPlatformRotation(rightPlatforms));
-            }
-        }
-    }*/
     IEnumerator SetLeftPlatformRotation(GameObject leftPlatforms)
     {
         float oldAngle = leftPlatforms.transform.rotation.eulerAngles.z;

@@ -498,9 +498,10 @@ GameObject:
   - component: {fileID: 6314932742456375459}
   - component: {fileID: 6314932742456375456}
   - component: {fileID: 1186196486}
+  - component: {fileID: 1641428840402221748}
   m_Layer: 6
   m_Name: 'P1 '
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,7 +692,6 @@ MonoBehaviour:
   minJumpHeight: 1
   timeToReachApex: 0.4
   moveSpeed: 20
-  reachOfPlayer: 2
   knockBackSpeedX: 70
   knockBackSpeedY: 80
   interactions: {fileID: 0}
@@ -751,6 +751,20 @@ MonoBehaviour:
       m_Action: Shoot
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &1641428840402221748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595467438188147804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c29bee12551e40a86bf000df365ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &6595467438457932831
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
 
-
     float veclocityXSmoothing;
     float veclocityYSmoothing;
     float knockBackSmoothing;
@@ -47,6 +46,8 @@ public class Player : MonoBehaviour
     int layerMask = 1 << 6; //this is hard code change it to get layer number through string
 
     public InteractionSystem interactions;
+    public GameObject levelUI;
+
     private void Awake()
     {
         movement.performed += Movement_performed;
@@ -118,6 +119,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(GetComponent<Health>().GetHealth() == 0)
+        {
+            Destroy(gameObject);
+            levelUI.SetActive(true);
+        }
+
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;

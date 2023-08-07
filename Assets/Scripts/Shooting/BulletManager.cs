@@ -6,16 +6,43 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    public GameObject Player;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private Shooting shooting;
+    private Health health;
+
+    public string playerTag;
+    public string collisionTag;
+    private bool isCurrentlyColliding = false;
+
+    private void Awake()
     {
-        if(Player.GetComponent<Shooting>().GetShootCount() == 1)
+        shooting = GameObject.FindGameObjectWithTag(playerTag).GetComponent<Shooting>();
+        health = GameObject.FindGameObjectWithTag(collisionTag).GetComponent<Health>();
+    }
+
+    private void Update()
+    {
+        if (shooting.GetShootCount() == 2)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if(isCurrentlyColliding)
             {
-                Debug.Log($"Colliding with {collision.gameObject.name}");
+                health.TakeDamage();
             }
             gameObject.SetActive(false);
+            shooting.SetShootCount(0);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == collisionTag) 
+        {
+            Debug.Log("correct");
+            isCurrentlyColliding = true;
+        }
+    }
+
+    void OnTriggerExit2D()
+    {
+        isCurrentlyColliding = false;
     }
 }

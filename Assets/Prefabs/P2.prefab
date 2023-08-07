@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974684862930516740}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.5, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8912023483159439689}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &8912023482070889187
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,9 +330,10 @@ GameObject:
   - component: {fileID: 8912023483159439701}
   - component: {fileID: 8912023483159439700}
   - component: {fileID: 7503515602602415668}
+  - component: {fileID: 5291756250273859932}
   m_Layer: 6
   m_Name: P2
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -546,7 +547,6 @@ MonoBehaviour:
   minJumpHeight: 1
   timeToReachApex: 0.4
   moveSpeed: 20
-  reachOfPlayer: 10
   knockBackSpeedX: 70
   knockBackSpeedY: 80
   interactions: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6292801731166815799, guid: 45a85726e314d544ebcb5df12e9cfb26, type: 3}
   side: Right
-  launchForce: 50
+  launchForce: 25
   firePoint: {fileID: 4623610009798386825}
   shoot:
     m_Name: Shoot
@@ -583,6 +583,20 @@ MonoBehaviour:
       m_Action: Shoot
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &5291756250273859932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8912023483159439702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c29bee12551e40a86bf000df365ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &8912023483468891266
 GameObject:
   m_ObjectHideFlags: 0

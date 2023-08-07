@@ -21,6 +21,11 @@ public class Shooting : MonoBehaviour
     {
         return shootCount;
     }
+
+    public void SetShootCount(int value)
+    {
+        shootCount = value;
+    }
     private void Awake()
     {
         shoot.performed += Shoot_performed;
@@ -40,14 +45,15 @@ public class Shooting : MonoBehaviour
     private void Shoot_performed(InputAction.CallbackContext obj)
     {
         switch (shootCount)
-        { 
+        {
             case 0:
-                shootCount++;
                 Shoot();
+                shootCount++;
                 break;
             case 1:
-                shootCount = 0;
+                shootCount++;
                 break;
+
         }
     }
 
