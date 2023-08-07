@@ -125,6 +125,15 @@ public class Player : MonoBehaviour
             levelUI.SetActive(true);
         }
 
+        if(GameObject.FindGameObjectWithTag("Player1") == null)
+        {
+            levelUI.GetComponent<LevelUI>().DisplayWinPrompt("Player2");
+        }
+        if (GameObject.FindGameObjectWithTag("Player2") == null)
+        {
+            levelUI.GetComponent<LevelUI>().DisplayWinPrompt("Player1");
+        }
+
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
